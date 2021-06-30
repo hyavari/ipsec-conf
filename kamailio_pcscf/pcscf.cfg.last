@@ -1,0 +1,83 @@
+# IP-Adress for incoming SIP-Traffic
+
+# SIP / UDP
+listen=udp:0.0.0.0:5060
+# Uncomment the below line only when UE is behind double NAT (e.g. VoIP calling over WiFi/ CN behind a NAT)
+#listen=udp:10.4.128.21:5060 advertise 172.24.15.30:5060
+
+# SIP / TCP
+#listen=tcp:0.0.0.0:5060
+listen=tcp:10.0.0.67:5060
+# Uncomment the below line only when UE is behind double NAT (e.g. VoIP calling over WiFi/ CN behind a NAT)
+#listen=tcp:10.4.128.21:5060 advertise 172.24.15.30:5060
+
+# SIP / TCP/TLS
+#listen=tls:0.0.0.0:5061
+
+# SIP / TCP / IPv6
+listen=tcp:[2600:1f18:1c03:3a00:6cf:bf17:202b:6e69]:5060
+
+alias=54.145.5.128:5060
+
+# IPSEC / UDP
+##!define IPSEC_LISTEN_ADDR "0.0.0.0"
+#!define IPSEC_LISTEN_ADDRV6 "2600:1f18:1c03:3a00:6cf:bf17:202b:6e69"
+#!define IPSEC_CLIENT_PORT 5500
+#!define IPSEC_SERVER_PORT 8000
+#!define IPSEC_MAX_CONN 25
+#!define IPSEC_SPI_ID_RANGE 50
+
+alias=pcscf.ims.mnc001.mcc001.3gppnetwork.org
+
+#!define PCSCF_URL "sip:pcscf.ims.mnc001.mcc001.3gppnetwork.org:5060"
+
+#!define TCP_PROCESSES 8
+
+#!subst "/NETWORKNAME/ims.mnc001.mcc001.3gppnetwork.org/"
+#!subst "/HOSTNAME/pcscf.ims.mnc001.mcc001.3gppnetwork.org/"
+#!subst "/PCRF_REALM/epc.mnc001.mcc001.3gppnetwork.org/"
+
+# Databases:
+#!define DB_URL "mysql://pcscf:psdk@127.0.0.1/pcscf"
+
+#!define SQLOPS_DBURL "pcscf=>mysql://pcscf:psdk@127.0.0.1/pcscf"
+
+
+#
+# Several features can be enabled using '#!define WITH_FEATURE' directives:
+#
+# *** To run in debug mode: 
+#     - define WITH_DEBUG
+#
+# *** To enable nat traversal execute:
+#     - define WITH_NAT
+#     - define the connection to the RTP-Proxy: RTPPROXY_ADDRESS
+#
+# *** To force alls calls through the RTP-Proxy
+#     - this will automagically enable NAT-Traversal
+#     - define FORCE_RTPRELAY
+#
+# *** To enable IPv4/IPv6 Translation (RTPProxy)
+#     - this will automagically enable NAT-Traversal
+#     - define WITH_RTPIPV4
+#
+# *** To enable TCP support execute:
+#     - define WITH_TCP
+#
+# *** To enable TLS support execute:
+#     - adjust CFGDIR/tls.cfg as needed
+#     - define WITH_TLS
+#     - this will automagically enable TCP
+#
+
+#
+# Enabled Features for this host:
+#!define WITH_DEBUG
+#!define WITH_NAT
+##!define WITH_NATPING
+#!define FORCE_RTPRELAY
+#!define WITH_TCP
+#!define WITH_IPSEC
+#!define WITH_IMS_HDR_CACHE
+#!define WITH_PING_UDP
+#!define WITH_PING_TCP
